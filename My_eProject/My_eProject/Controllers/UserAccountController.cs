@@ -1,6 +1,7 @@
 ﻿using My_eProject.Models;
 using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -74,12 +75,38 @@ namespace eProject_main.Controllers
 
         public ActionResult ChangePassword()
         {
-            return View();
+            if (Session["UserProfile"] == null) return RedirectToAction("Login");
+            Profile userProfile = (Profile)Session["UserProfile"];
+            return View(userProfile);
         }
         [HttpPost]
-        public ActionResult ChangePassword([Bind(Include = "Password")] Profile profile)
+        public ActionResult ChangePassword([Bind(Include = "UserID,Password")] Profile profile,FormCollection form)
         {
-            return View();
+            var oldpass = Convert.ToString(form["old_password"]);
+            var cfpass = Convert.ToString(form["confirm_password"]);
+            var rs = db.Profiles.SingleOrDefault(s => s.UserID == profile.UserID);
+            if (rs != null)
+            {
+                if (rs.Password != CreateMD5(oldpass))
+                {
+                    ViewBag.ErrorOld_password = "Old password is invalid";
+                }
+                else if(cfpass != profile.Password)
+                {
+                    ViewBag.ErrorConfirm_password = "Password not match";
+                }
+                else if (oldpass == profile.Password)
+                {
+                    ViewBag.ErrorNew_password = "The new password must be different from the old password";
+                }
+                else
+                {
+                    rs.Password = CreateMD5(profile.Password);
+                    db.SaveChanges();
+                    return RedirectToAction("Profile");
+                }
+            }
+            return View(profile);
         }
 
         public ActionResult Register()
@@ -91,7 +118,7 @@ namespace eProject_main.Controllers
         {
             string cfpass = Convert.ToString(form["txtConfirmPassword"]);
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid == true)
             {
                 var rs = db.Profiles.Where(s => s.UserID == profile.UserID).SingleOrDefault();
                 if (rs != null)
@@ -127,15 +154,44 @@ namespace eProject_main.Controllers
 
         //POST: Customer/Profile
         [HttpPost]
-        public ActionResult EditProfile(Profile profile)
+        public ActionResult EditProfile([Bind(Include = "UserID,FirstName,LastName,Address,PhoneNumber,EmailAddress,Sex,Age,CreditCard")]Profile profile, FormCollection form)
         {
             // If user is not loged in, redirect to login page
             if (Session["UserProfile"] == null) return RedirectToAction("Login");
-
             // Show User Profile
-            Profile userProfile = (Profile)Session["UserProfile"];
-            return View(userProfile);
+
+
+            Profile rs = db.Profiles.SingleOrDefault(s => s.UserID == profile.UserID);
+            var cfpassword = Convert.ToString(form["txtConfirmPassword"]);
+            var cfpasswordMD5 = CreateMD5(cfpassword);
+            if (cfpasswordMD5 == rs.Password.ToString())
+            {
+                if (rs != null)
+                {
+                    rs.FirstName = profile.FirstName;
+                    rs.LastName = profile.LastName;
+                    rs.Address = profile.Address;
+                    rs.PhoneNumber = profile.PhoneNumber;
+                    rs.EmailAddress = profile.EmailAddress;
+                    rs.Sex = profile.Sex;
+                    rs.Age = profile.Age;
+                    rs.CreditCard = profile.CreditCard;
+                    db.SaveChanges();
+                }
+                
+                Session["UserProfile"] = profile;
+
+                return RedirectToAction("Profile");
+            }
+            ViewBag.ErrorConfirmPassword = "Invalid Password";
+            return View(profile);
+
+
         }
+
+
+
+
 
         public ActionResult Profile()
         {

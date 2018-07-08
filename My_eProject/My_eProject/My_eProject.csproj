@@ -311,6 +311,8 @@
     <Content Include="Views\UserAccount\Login.cshtml" />
     <Content Include="Views\UserAccount\Register.cshtml" />
     <Content Include="Views\UserAccount\Profile.cshtml" />
+    <Content Include="Views\UserAccount\EditProfile.cshtml" />
+    <Content Include="Views\UserAccount\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
