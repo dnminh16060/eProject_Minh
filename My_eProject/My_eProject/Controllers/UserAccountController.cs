@@ -60,7 +60,7 @@ namespace eProject_main.Controllers
             }
             else
             {
-                return View();
+                return View(profile);
             }
         }
 
@@ -101,7 +101,7 @@ namespace eProject_main.Controllers
                 }
                 else if (profile.Password.ToString() != cfpass)
                 {
-                    ViewBag.MessageCfPasswordError = "Password not match";
+                    ViewBag.ErrorConfirmPassword = "Password not match";
                     return View();
                 }
                 else

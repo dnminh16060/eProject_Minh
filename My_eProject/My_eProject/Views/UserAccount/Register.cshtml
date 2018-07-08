@@ -1,0 +1,126 @@
+﻿@model My_eProject.Models.Profile
+@{
+    ViewBag.Title = "Register";
+}
+<div class="container pt-5">
+    @using (Html.BeginForm("Register", "UserAccount", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = " col-md-6 col-sm-12 form-register" }))
+    {
+        <h2><b>Registration Form</b></h2>
+        <hr />
+        <div class="form-group">
+
+            <div class="col-md inputGroupContainer">
+                <div class="input-group ">
+                    @Html.TextBoxFor(s => s.UserID, "", new { @class = "form-control ", placeholder = "Username" })
+                </div>
+                <span class="text-danger">@ViewBag.MessageForUsername</span>
+                @Html.ValidationMessageFor(s => s.UserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md inputGroupContainer">
+                <div class="input-group">
+                    @Html.TextBoxFor(s => s.Password, "", new { @class = "form-control ", placeholder = "Password", type = "password" })
+                </div>
+                @Html.ValidationMessageFor(s => s.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="col-md inputGroupContainer">
+                <div class="input-group">
+                    <input class="form-control" placeholder = "ConfirmPassword" name="txtConfirmPassword" type="password"/>
+                </div>
+                <span class=" text-danger">@ViewBag.ErrorConfirmPassword</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                <div class=" input-group">
+                    @Html.TextBoxFor(s => s.FirstName, "", new { @class = "form-control ", placeholder = "FirstName" })
+                </div>
+                @Html.ValidationMessageFor(s => s.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md inputGroupContainer">
+                <div class="input-group">
+                    @Html.TextBoxFor(s => s.LastName, "", new { @class = "form-control ", placeholder = "LastName" })
+                </div>
+                @Html.ValidationMessageFor(s => s.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="col-md inputGroupContainer">
+                <div class="input-group">
+                    @Html.TextBoxFor(s => s.Address, "", new { @class = "form-control ", placeholder = "Address" })
+                </div>
+                @Html.ValidationMessageFor(s => s.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md inputGroupContainer">
+                <div class="input-group">
+                    @Html.TextBoxFor(s => s.PhoneNumber, "", new { @class = "form-control ", placeholder = "PhoneNumber" })
+                </div>
+                @Html.ValidationMessageFor(s => s.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md inputGroupContainer">
+                <div class="input-group">
+                    @Html.TextBoxFor(s => s.EmailAddress, "", new { @class = "form-control ", placeholder = "EmailAddress" })
+                </div>
+                @Html.ValidationMessageFor(s => s.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md inputGroupContainer d-flex flex-row">
+                <label class="control-label mr-2">Gender :</label>
+                <div class="pl-1">
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(s => s.Sex, true, new { @checked = true }) <span>Male</span>
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(s => s.Sex, false)<span class="ml-2">Female</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                <label class="control-label mr-2 d-inline-flex flex-row">Age:</label>
+                @Html.TextBoxFor(s => s.Age, "", new { @class = "form-control col-2 d-inline", type = "number", min = "6", value = "6", max = "100" })
+                @Html.ValidationMessageFor(s => s.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                <div class="input-group">
+                    @Html.TextBoxFor(s => s.CreditCard, "", new { @class = "form-control ", placeholder = "CreditCard", type = "number" })
+                </div>
+                @Html.ValidationMessageFor(s => s.CreditCard, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md"></label>
+            <div class="col-md d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+        </div>
+    }
+</div>

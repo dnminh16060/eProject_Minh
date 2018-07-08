@@ -11,7 +11,8 @@ namespace My_eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Profile
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,15 +22,25 @@ namespace My_eProject.Models
         }
     
         public long ID { get; set; }
+        [Required]
         public string UserID { get; set; }
+        [Required]
         public string Password { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public string PhoneNumber { get; set; }
+        [Required]
         public string EmailAddress { get; set; }
+        [Required]
         public bool Sex { get; set; }
+        [Required]
         public int Age { get; set; }
+        [Required]
         public string CreditCard { get; set; }
         public int SkyMiles { get; set; }
     
