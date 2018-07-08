@@ -1,0 +1,22 @@
+﻿@using My_eProject.Models
+@{ Profile user = (Profile)HttpContext.Current.Session["UserProfile"]; }
+@if (Session["UserProfile"] == null)
+{
+    <li class="nav-item ">
+        @Html.ActionLink("Login", "Login", "UserAccount", null, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item ">
+        @Html.ActionLink("Register", "Register", "UserAccount", null, new { @class = "nav-link" })
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <span class=" disabled active nav-link ">
+            Hello:
+            @Html.ActionLink(@user.UserID.ToString(), "Profile", "UserAccount", null, new { @class = "text-white" })
+
+            @Html.ActionLink("(logout)", "Logout", "UserAccount", null, new { @class = "text-white-50" })
+        </span>
+    </li>
+}
