@@ -110,7 +110,7 @@
         <div class="form-group">
             <div class="col-md inputGroupContainer">
                 <div class="input-group">
-                    @Html.TextBoxFor(s => s.CreditCard, "", new { @class = "form-control ", placeholder = "CreditCard", type = "number" })
+                    @Html.TextBoxFor(s => s.CreditCard, "", new { @class = "form-control ", placeholder = "CreditCard"})
                 </div>
                 @Html.ValidationMessageFor(s => s.CreditCard, "", new { @class = "text-danger" })
             </div>

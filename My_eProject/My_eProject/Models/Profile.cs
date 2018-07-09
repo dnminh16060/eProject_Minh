@@ -64,7 +64,7 @@ namespace My_eProject.Models
         public int Age { get; set; }
 
         [Required]
-        [MaxLength(16, ErrorMessage = "LastName must be less than 16 characters")]
+        [MaxLength(16, ErrorMessage = "CreditCard must be less than 16 characters")]
         public string CreditCard { get; set; }
 
         public int SkyMiles { get; set; }
