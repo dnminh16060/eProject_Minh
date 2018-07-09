@@ -23,6 +23,8 @@ namespace My_eProject.Models
     
         public long ID { get; set; }
         [Required]
+        [Display(Name ="UserName")]
+        [MaxLength(16, ErrorMessage = "User name must be less than 16 characters")]
         public string UserID { get; set; }
         [Required]
         public string Password { get; set; }
