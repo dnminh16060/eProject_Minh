@@ -23,17 +23,20 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-bottom: 25%;
+    
 }
+    .query-flight-details .form-query-flight-details {
+        padding-bottom: 30%;
+    }
 
-.func-login {
-    background-image: url("../images/35580.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    padding-bottom: 20%;
-    padding-top: 5%;
-}
+    .func-login {
+        background-image: url("../images/35580.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding-bottom: 20%;
+        padding-top: 5%;
+    }
 
     .func-login .form-login {
         border-radius: 1%;
