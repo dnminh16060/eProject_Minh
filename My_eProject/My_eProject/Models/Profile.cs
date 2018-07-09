@@ -35,6 +35,7 @@ namespace My_eProject.Models
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid EmailAddress")]
         public string EmailAddress { get; set; }
         [Required]
         public bool Sex { get; set; }
@@ -46,5 +47,6 @@ namespace My_eProject.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Tickets { get; set; }
+        
     }
 }
